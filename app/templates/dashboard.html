@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard – SafeDashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Financial Dashboard</h2>
+</div>
+
+<!-- Summary Cards -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-label">Total Transactions</div>
+    <div class="stat-value">{{ summary.total_transactions }}</div>
+  </div>
+  <div class="stat-card stat-card--green">
+    <div class="stat-label">Total Credits</div>
+    <div class="stat-value">{{ summary.total_credits }}</div>
+  </div>
+  <div class="stat-card stat-card--red">
+    <div class="stat-label">Total Debits</div>
+    <div class="stat-value">{{ summary.total_debits }}</div>
+  </div>
+  <div class="stat-card stat-card--yellow">
+    <div class="stat-label">Pending</div>
+    <div class="stat-value">{{ summary.pending_count }}</div>
+  </div>
+  <div class="stat-card stat-card--red">
+    <div class="stat-label">Failed</div>
+    <div class="stat-value">{{ summary.failed_count }}</div>
+  </div>
+</div>
+
+<!-- Recent Transactions Table -->
+<div class="table-section">
+  <div class="table-header">
+    <h3>Recent Transactions</h3>
+    <button id="refresh-btn" class="btn btn-sm">Refresh</button>
+  </div>
+  <div class="table-wrapper">
+    <table id="transactions-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Account</th>
+          <th>Amount</th>
+          <th>Currency</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Description</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="transactions-body">
+        <tr><td colspan="8" class="loading-row">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}
